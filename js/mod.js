@@ -34,7 +34,7 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return hasUpgrade('$', 11)
 }
 
 // Calculate points/sec!
@@ -43,6 +43,16 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade('$', 12)) gain = gain.add(2)
+	if (hasUpgrade('$', 13)) gain = gain.times(3)
+	if (hasUpgrade('$', 14)) gain = gain.times(3)
+	if (hasUpgrade('$', 15)) gain = gain.times(10)
+	if (hasUpgrade('$', 21)) gain = gain.times(20)
+	if (hasUpgrade('$', 22)) gain = gain.times(1e7)
+	if (hasUpgrade('$', 23)) gain = gain.times(15)
+	if (hasUpgrade('$', 24)) gain = gain.times(1e10)
+	if (hasUpgrade('$', 31)) gain = gain.times("ee12519")
+	if (hasUpgrade('$', 32)) gain = gain.times(2)
 	return gain
 }
 
@@ -56,7 +66,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("eeee309"))
 }
 
 
